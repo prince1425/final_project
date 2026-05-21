@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeCraftHub - Learning Goal Tracker</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Background Glows -->
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="main-header animate-fade-in">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <h1>CodeCraft<span>Hub</span></h1>
+      </div>
+      <p class="subtitle">Track and master your learning milestones with ease.</p>
+    </header>
+
+    <div class="main-layout">
+      <!-- Sidebar / Form -->
+      <aside class="sidebar animate-slide-in-left">
+        <div class="glass-card">
+          <h2 id="form-title"><i class="fa-solid fa-circle-plus"></i> Add New Course</h2>
+          <form id="course-form">
+            <input type="hidden" id="course-id">
+            
+            <div class="form-group">
+              <label for="name">Course Name</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-book-bookmark input-icon"></i>
+                <input type="text" id="name" placeholder="e.g. Master Advanced React" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-align-left input-icon align-top"></i>
+                <textarea id="description" rows="3" placeholder="What will you learn in this course?" required></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="target_date">Target Date</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-calendar-days input-icon"></i>
+                <input type="date" id="target_date" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="status">Status</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-spinner input-icon"></i>
+                <select id="status" required>
+                  <option value="Not Started" selected>Not Started</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" id="submit-btn" class="btn btn-primary">
+                <i class="fa-solid fa-paper-plane"></i> Save Course
+              </button>
+              <button type="button" id="cancel-btn" class="btn btn-secondary hidden">
+                <i class="fa-solid fa-xmark"></i> Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </aside>
+
+      <!-- Main Content / List -->
+      <main class="content animate-slide-in-right">
+        <!-- Stats Section -->
+        <section class="stats-grid">
+          <div class="stat-card glass-card">
+            <div class="stat-icon bg-total"><i class="fa-solid fa-list-check"></i></div>
+            <div class="stat-details">
+              <h3 id="stat-total">0</h3>
+              <p>Total Courses</p>
+            </div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-icon bg-not-started"><i class="fa-solid fa-circle-pause"></i></div>
+            <div class="stat-details">
+              <h3 id="stat-not-started">0</h3>
+              <p>Not Started</p>
+            </div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-icon bg-in-progress"><i class="fa-solid fa-arrows-spin fa-spin-slow"></i></div>
+            <div class="stat-details">
+              <h3 id="stat-in-progress">0</h3>
+              <p>In Progress</p>
+            </div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-icon bg-completed"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="stat-details">
+              <h3 id="stat-completed">0</h3>
+              <p>Completed</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Course List Section -->
+        <section class="courses-section glass-card">
+          <div class="section-header">
+            <h2><i class="fa-solid fa-graduation-cap"></i> My Learning Goals</h2>
+            <div class="search-filter">
+              <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Search courses...">
+              </div>
+            </div>
+          </div>
+
+          <div id="loading-spinner" class="loading-state">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            <p>Loading your courses...</p>
+          </div>
+
+          <div id="empty-state" class="empty-state hidden">
+            <div class="empty-icon">
+              <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <h3>No courses tracked yet</h3>
+            <p>Start your learning journey by adding your first course on the left!</p>
+          </div>
+
+          <div id="courses-grid" class="courses-grid">
+            <!-- Dynamic course cards injected here -->
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
