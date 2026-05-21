@@ -293,6 +293,9 @@ app.delete('/api/courses/:id', async (req, res) => {
   }
 });
 
+// Serve static frontend files from 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 // 6) Basic 404 handler for unknown routes
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
